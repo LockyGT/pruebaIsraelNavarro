@@ -34,6 +34,9 @@ public class Cuenta {
 	@Column(name = "ESTADO")
 	private Boolean estado;
 	
+	@Column(name="SALDO_ACTUAL")
+	private Double saldoActual;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CLIENTE_ID")
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -129,6 +132,38 @@ public class Cuenta {
 	}
 
 	
+
+	/**
+	 * @return the saldoActual
+	 */
+	public Double getSaldoActual() {
+		return saldoActual;
+	}
+
+
+	/**
+	 * @param saldoActual the saldoActual to set
+	 */
+	public void setSaldoActual(Double saldoActual) {
+		this.saldoActual = saldoActual;
+	}
+
+
+	/**
+	 * @return the movimientos
+	 */
+	public List<Movimiento> getMovimientos() {
+		return movimientos;
+	}
+
+
+	/**
+	 * @param movimientos the movimientos to set
+	 */
+	public void setMovimientos(List<Movimiento> movimientos) {
+		this.movimientos = movimientos;
+	}
+
 
 	@Override
 	public String toString() {

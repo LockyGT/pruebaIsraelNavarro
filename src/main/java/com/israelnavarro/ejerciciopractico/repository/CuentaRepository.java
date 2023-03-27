@@ -6,4 +6,5 @@ import com.israelnavarro.ejerciciopractico.entity.Cuenta;
 
 public interface CuentaRepository extends CrudRepository<Cuenta, Long>{
 
+	Cuenta findByClienteClienteId(Long idCliente);
 }

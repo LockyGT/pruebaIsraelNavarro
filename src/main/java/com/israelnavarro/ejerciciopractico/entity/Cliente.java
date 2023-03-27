@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 public class Cliente extends Persona{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CLIENTE_ID")
 	private Long clienteId;
 	

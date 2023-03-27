@@ -21,32 +21,33 @@ import jakarta.persistence.TemporalType;
 public class Movimiento {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MOVIMIENTO_ID")
-	private Boolean idMovimiento;
+	private Long idMovimiento;
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	@Column(name = "TIPO_MOVIMIENTO")
 	private String tipoMovimiento;
 	@Column(name = "VALOR")
 	private String valor;
-	@Column(name = "SALDO_INICIAL")
-	private Double saldoInicial;
+	@Column(name = "SALDO")
+	private Double saldo;
 	@Column(name = "ESTADO_INICIAL", columnDefinition = "TINYINT(1)")
 	private Boolean estado;
+	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "NUMERO_CUENTA")
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private Cuenta cuenta;
 	
-	public Movimiento(Boolean idMovimiento, Date date, String tipoMovimiento, String valor, Double saldoInicial,
+	public Movimiento(Long idMovimiento, Date date, String tipoMovimiento, String valor, Double saldo,
 			Boolean estado) {
 		this.idMovimiento = idMovimiento;
 		this.fecha = date;
 		this.tipoMovimiento = tipoMovimiento;
 		this.valor = valor;
-		this.saldoInicial = saldoInicial;
+		this.saldo = saldo;
 		this.estado = estado;
 	}
 
@@ -56,14 +57,14 @@ public class Movimiento {
 	/**
 	 * @return the idMovimiento
 	 */
-	public Boolean getIdMovimiento() {
+	public Long getIdMovimiento() {
 		return idMovimiento;
 	}
 
 	/**
 	 * @param idMovimiento the idMovimiento to set
 	 */
-	public void setIdMovimiento(Boolean idMovimiento) {
+	public void setIdMovimiento(Long idMovimiento) {
 		this.idMovimiento = idMovimiento;
 	}
 
@@ -112,15 +113,15 @@ public class Movimiento {
 	/**
 	 * @return the saldoInicial
 	 */
-	public Double getSaldoInicial() {
-		return saldoInicial;
+	public Double getSaldo() {
+		return saldo;
 	}
 
 	/**
 	 * @param saldoInicial the saldoInicial to set
 	 */
-	public void setSaldoInicial(Double saldoInicial) {
-		this.saldoInicial = saldoInicial;
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 
 	/**
@@ -152,11 +153,12 @@ public class Movimiento {
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "Movimiento [idMovimiento=" + idMovimiento + ", fecha=" + fecha + ", tipoMovimiento=" + tipoMovimiento
-				+ ", valor=" + valor + ", saldoInicial=" + saldoInicial + ", estado=" + estado + "]";
+				+ ", valor=" + valor + ", saldo=" + saldo + ", estado=" + estado + "]";
 	}
 
 }

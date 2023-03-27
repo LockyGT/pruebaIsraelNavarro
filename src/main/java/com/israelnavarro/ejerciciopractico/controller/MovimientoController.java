@@ -31,7 +31,15 @@ public class MovimientoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Movimiento> post( @RequestBody Movimiento movimiento) {
+	public ResponseEntity<?> post( @RequestBody Movimiento movimiento) {
+		Movimiento res = service.post(movimiento);
+		if(res == null) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("mensahe", "Error al eliminar el Movimiento");
+
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 		return new ResponseEntity<Movimiento>(service.post(movimiento), HttpStatus.CREATED);
 	}
 	
